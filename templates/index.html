@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Fetcher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #f0f4f8;
+            text-align: center;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Weather Fetcher 🌦️</h1>
+    <form method="POST">
+        <input type="text" name="city" placeholder="Enter city name" required>
+        <input type="submit" value="Get Weather">
+    </form>
+
+    {% if weather %}
+        <div class="result">
+            <h2>Weather in {{ weather.city }}</h2>
+            <p>🌡️ Temperature: {{ weather.temperature }}°C</p>
+            <p>☁️ Description: {{ weather.description }}</p>
+            <p>💧 Humidity: {{ weather.humidity }}%</p>
+            <p>🌬️ Wind Speed: {{ weather.wind }} m/s</p>
+        </div>
+    {% elif error %}
+        <div class="result" style="color:red;">
+            {{ error }}
+        </div>
+    {% endif %}
+</body>
+</html>
